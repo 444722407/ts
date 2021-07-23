@@ -1,27 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+      <h1>父组件</h1>
+      x:{{x}}
+      y:{{y}}
+      {{obj.car.car_name}}
+      <br>
+      <button @click="msg +='='">++</button>
+      <chenyao />
+      <cdata />
+      <craw />
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+<script  setup lang ='ts'>
+import useMousePoint from './hook/useMousePoint';
+import chenyao from "./components/chenyao.vue";
+import cdata from "./components/data.vue";
+import craw from "./components/raw.vue";
+import { toRaw } from '@vue/reactivity';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
+const {x ,y } = useMousePoint()
+const obj = toRaw({
+  name:123,
+  car:{
+    car_name:'奥迪'
   }
-});
+})
+
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="css" scoped>
+
 </style>
